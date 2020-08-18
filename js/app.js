@@ -42,34 +42,35 @@ new Items ('../img/wine-glass.jpg', 'wine-glass');
 //declare function to generate random image
 function displayRandomImage() {
     var randomImageIndex = getRandomNumber(itemArray.length);
-//while loop created 
+//while loop created to avoid image reptition
+    while(repeatAvoidArray.includes(randomImageIndex)) {
+        randomImageIndex = getRandomNumber(itemArray.length);
+    }
 
-
-
-
-
-
-
-    //declare variable for the chosen random images from itemArray
+    repeatAvoidArray.push(randomImageIndex);
+//following if statement will remove the first item in array
+    if (repeatAvoidArray > 6) {
+        repeatAvoidArray.shift();
+    }
+//declare variable for the chosen random images from itemArray
 var chosenRandomImage = itemArray[randomImageIndex];
 //generates total times an item was shown
 chosenRandomImage.itemCounter++;
 //create the image tag to append to parent
+buildElements(chosenRandomImage);
+}
 
+function buildElements(chosenRandomImage) {
+    var itemImage = document.createElement('img');
+    itemImage.setAttribute('src', chosenRandomImage.itemPhoto);
+    itemImage.setAttribute('alt', chosenRandomImage.alt);
+    itemImage.setAttribute('title', chosenRandomImage.title);
 
-
-
-
-
-
-
-
-
-var itemImage = document.createElement('img');
-itemImage.setAttribute('src', chosenRandomImage.itemPhoto);
-itemImage.setAttribute('alt', chosenRandomImage.alt);
-itemImage.setAttribute('title', chosenRandomImage.title);
+    var radioButton = document.createElement ('input')
+    radioButton.setAttribute('type', 'radio');
+    radioButton.setAttribute('value', chosenRandomImage.alt);
 //append to parent
+parentElement.appendChild(radioButton);
 parentElement.appendChild(itemImage);
 }
 
