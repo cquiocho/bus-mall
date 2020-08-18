@@ -6,6 +6,7 @@ var parentElement = document.getElementById('inventory');
 var parentList = document.getElementById('item-list');
 var itemArray = [];
 var clickLimit = 25;
+var repeatAvoidArray = [];
 
 //generate object constructor
 function Items(itemPhoto, alt) {
@@ -41,11 +42,29 @@ new Items ('../img/wine-glass.jpg', 'wine-glass');
 //declare function to generate random image
 function displayRandomImage() {
     var randomImageIndex = getRandomNumber(itemArray.length);
-//declare variable for the chosen random images from itemArray
+//while loop created 
+
+
+
+
+
+
+
+    //declare variable for the chosen random images from itemArray
 var chosenRandomImage = itemArray[randomImageIndex];
 //generates total times an item was shown
 chosenRandomImage.itemCounter++;
 //create the image tag to append to parent
+
+
+
+
+
+
+
+
+
+
 var itemImage = document.createElement('img');
 itemImage.setAttribute('src', chosenRandomImage.itemPhoto);
 itemImage.setAttribute('alt', chosenRandomImage.alt);
