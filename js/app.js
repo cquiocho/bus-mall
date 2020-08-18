@@ -38,16 +38,13 @@ new Items ('../img/usb.gif', 'usb');
 new Items ('../img/water-can.jpg', 'water-can');
 new Items ('../img/wine-glass.jpg', 'wine-glass');
 
-//acquire the helper function - borrowed from MDN web docs
-function getRandomNumber(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
 //declare function to generate random image
 function displayRandomImage() {
     var randomImageIndex = getRandomNumber(itemArray.length);
 //declare variable for the chosen random images from itemArray
 var chosenRandomImage = itemArray[randomImageIndex];
-
+//generates total times an item was shown
+chosenRandomImage.itemCounter++;
 //create the image tag to append to parent
 var itemImage = document.createElement('img');
 itemImage.setAttribute('src', chosenRandomImage.itemPhoto);
@@ -56,12 +53,18 @@ itemImage.setAttribute('title', chosenRandomImage.title);
 //append to parent
 parentElement.appendChild(itemImage);
 }
+
+//acquire the helper function - borrowed from MDN web docs
+function getRandomNumber(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
 //create 'click' event listener
-function clickImage(event){
+function clickImage(event) {
 var alt = event.target.alt;
 clickLimit--;
 if (clickLimit !== 0) {
-    for (var i=0; i<itemArray.length; i++) {
+    for (var i = 0; i < itemArray.length; i++) {
         if(alt === itemArray[i].alt) {
             itemArray[i].clickCounter++;
         }
@@ -71,14 +74,14 @@ displayRandomImage();
 displayRandomImage();
 displayRandomImage();
 }
-else{
+    else{
     parentElement.innerHTML = '';
-    for (var i=0; i<itemArray.length; i++) {
+    for (var i = 0; i < itemArray.length; i++) {
         var listResults = document.createElement('li');
         listResults.textContent = itemArray[i].alt + ' had ' + itemArray[i].clickCounter + ' votes and was shown ' + itemArray[i].itemCounter + ' times.';
         parentList.appendChild(listResults);
+        }
     }
-}
 }
 parentElement.addEventListener('click', clickImage);
 
