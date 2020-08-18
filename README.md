@@ -2,7 +2,7 @@
 
 ## BusMall Project
 
-Build an market analysis application that will store, calculate and visually display the resulting data.
+Problem Domain: As a marketing analyst, I want an application that will showcase numerous items that people may choose from so that I can store, calculate and view a report with the resulting data.
 
 ### Author: Christopher Quiocho
 
