@@ -7,4 +7,7 @@ Problem Domain: As a marketing analyst, I want an application that will showcase
 ### Author: Christopher Quiocho
 
 ### Links and Resources
-* [Photo Image]()
+* [Creating a Chart](https://www.chartjs.org/)
+* [CSS Styling](https://overapi.com/css)
+* [Input Radio Object](https://www.w3schools.com/jsref/dom_obj_radio.asp)
+* [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
