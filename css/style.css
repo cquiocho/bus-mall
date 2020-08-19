@@ -1,4 +1,36 @@
+body {
+    background-color: rgb(61, 44, 44);
+    margin: 20px;
+}
+
+h1 {
+    background-color: rgb(167, 106, 8);
+    font-size: 5em;
+    text-align: center;
+    color: rgb(61, 44, 44);
+}
+
 img {
-    display: inline-block;
     width: 20%;
+}
+
+#inventory {
+    display: inline-flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: 30px;
+}
+
+#item-list{
+    color: rgb(167, 106, 8);
+}
+
+#footback {
+    color: rgb(61, 44, 44);
+    height: 50px;
+    background-color:  rgb(167, 106, 8);
+    margin-top: 30px;
+    text-align: center;
+    font-size: 2em;
+    padding-top: 10px;
 }
