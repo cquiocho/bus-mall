@@ -9,6 +9,11 @@ var clickLimit = 25;
 var repeatAvoidArray = [];
 var clickTotal = [];
 var shownTotal = [];
+//retreive array from local storage, requires key
+var giveMeAllData = localStorage.getItem('allData');
+// console.log('local storage gave me this:', giveMeAllData);
+var parcedLocalStorage = []
+// console.log('this is my retreived JSON data', parcedLocalStorage);
 
 //generate object constructor
 function Items(itemPhoto, alt) {
@@ -21,6 +26,8 @@ function Items(itemPhoto, alt) {
 }
 // ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']
 
+if (giveMeAllData === null) {
+    // console.log('upon page loading, there should be nothing in local storage');
 new Items ('../img/bag.jpg', 'bag');
 new Items ('../img/banana.jpg', 'banana');
 new Items ('../img/bathroom.jpg', 'bathroom');
@@ -41,7 +48,17 @@ new Items ('../img/unicorn.jpg', 'unicorn');
 new Items ('../img/usb.gif', 'usb');
 new Items ('../img/water-can.jpg', 'water-can');
 new Items ('../img/wine-glass.jpg', 'wine-glass');
-
+}   else {
+//parse all the data received back from local storage
+        var parcedData = JSON.parse(giveMeAllData);
+// console.log('this is parced data:', parcedData);
+        itemArray = parcedData;
+// parcedLocalStorage.push(parcedData);
+//the following 'for' loop does not work!! infinite loop!!
+    // for (var i = 0; i < parcedLocalStorage.length; i++) {
+    //     var localConstructor = new Items (parcedLocalStorage[i]);
+    //     itemArray.push(localConstructor);
+    }
 //declare function to generate random image
 function displayRandomImage() {
     var randomImageIndex = getRandomNumber(itemArray.length);
@@ -97,8 +114,12 @@ displayRandomImage();
 displayRandomImage();
 displayRandomImage();
 }
-    else{
-        console.log('inside else statement');
+    else {
+        var jsonArray = JSON.stringify(itemArray);
+// console.log('here is my jsonArray', jsonArray);
+//set array in local storage, requires key/value
+        localStorage.setItem('allData', jsonArray);
+        // console.log('inside else statement');
     parentElement.innerHTML = '';
     for (var i = 0; i < itemArray.length; i++) {
         var listResults = document.createElement('li');
@@ -106,7 +127,7 @@ displayRandomImage();
         parentList.appendChild(listResults);
         }
         clicks();
-        console.log('my total clicks', clickTotal);
+        // console.log('my total clicks', clickTotal);
         barChart();
     }
 }
@@ -116,32 +137,18 @@ displayRandomImage();
 displayRandomImage();
 displayRandomImage();
 
-
-
 //create "clickTotal" function, total clicks per image pushed into global array
+//create "shownTotal" function, total times image shown pushed into global array
 function clicks() {
     for (var i = 0; i < itemArray.length; i++) {
         var clickData = (itemArray[i].clickCounter);
-        console.log('this is my clickData:', clickData);
+        // console.log('this is my clickData:', clickData);
         clickTotal.push(clickData);
         var shownData = (itemArray[i].itemCounter);
         shownTotal.push(shownData);
     }
 }
-//create "shownTotal" function, total times image shown pushed into global array
-// function views() {
-//     for (var i = 0; i < itemArray.length; i++) {
-        
-//         console.log('this is my shownData', shownData);
-        
-//     }
-// }
 
-
-// views();
-
-var jsonArray = JSON.stringify(itemArray.clickCounter);
-// console.log('this is my click counter data', jsonArray);
 //generate bar graph with canvas
 function barChart() {
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -153,95 +160,92 @@ var myChart = new Chart(ctx, {
             label: '# of Votes',
             data: clickTotal,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)'
             ],
             borderWidth: 1
         },{
             label: '# of Times Shown',
             data: shownTotal, 
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)'
             ],
         }]
