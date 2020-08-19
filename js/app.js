@@ -98,12 +98,16 @@ displayRandomImage();
 displayRandomImage();
 }
     else{
+        console.log('inside else statement');
     parentElement.innerHTML = '';
     for (var i = 0; i < itemArray.length; i++) {
         var listResults = document.createElement('li');
         listResults.textContent = itemArray[i].alt + ' had ' + itemArray[i].clickCounter + ' votes and was shown ' + itemArray[i].itemCounter + ' times.';
         parentList.appendChild(listResults);
         }
+        clicks();
+        console.log('my total clicks', clickTotal);
+        barChart();
     }
 }
 parentElement.addEventListener('click', clickImage);
@@ -112,26 +116,34 @@ displayRandomImage();
 displayRandomImage();
 displayRandomImage();
 
+
+
 //create "clickTotal" function, total clicks per image pushed into global array
 function clicks() {
     for (var i = 0; i < itemArray.length; i++) {
-        var clickData = (parseInt(itemArray[i].clickCounter));
+        var clickData = (itemArray[i].clickCounter);
+        console.log('this is my clickData:', clickData);
         clickTotal.push(clickData);
-    }
-}
-//create "shownTotal" function, total times image shown pushed into global array
-function views() {
-    for (var i = 0; i < itemArray.length; i++) {
-        var shownData = (parseInt(itemArray[i].itemCounter));
+        var shownData = (itemArray[i].itemCounter);
         shownTotal.push(shownData);
     }
 }
+//create "shownTotal" function, total times image shown pushed into global array
+// function views() {
+//     for (var i = 0; i < itemArray.length; i++) {
+        
+//         console.log('this is my shownData', shownData);
+        
+//     }
+// }
 
-clicks();
-views();
 
+// views();
+
+var jsonArray = JSON.stringify(itemArray.clickCounter);
+// console.log('this is my click counter data', jsonArray);
 //generate bar graph with canvas
-
+function barChart() {
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -139,24 +151,99 @@ var myChart = new Chart(ctx, {
         labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 8, 28, 16, 15, 32, 8, 16, 22],
+            data: clickTotal,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
             ],
             borderWidth: 1
+        },{
+            label: '# of Times Shown',
+            data: shownTotal, 
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+            ],
         }]
     },
     options: {
@@ -169,3 +256,4 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+}
