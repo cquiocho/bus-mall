@@ -12,7 +12,7 @@ var shownTotal = [];
 //retreive array from local storage, requires key
 var giveMeAllData = localStorage.getItem('allData');
 // console.log('local storage gave me this:', giveMeAllData);
-var parcedLocalStorage = []
+var parcedLocalStorage = [];
 // console.log('this is my retreived JSON data', parcedLocalStorage);
 
 //generate object constructor
@@ -86,7 +86,7 @@ function buildElements(chosenRandomImage) {
     itemImage.setAttribute('alt', chosenRandomImage.alt);
     itemImage.setAttribute('title', chosenRandomImage.title);
 
-    var radioButton = document.createElement ('input')
+    var radioButton = document.createElement ('input');
     radioButton.setAttribute('type', 'radio');
     radioButton.setAttribute('value', chosenRandomImage.alt);
 //append to parent
