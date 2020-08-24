@@ -27,7 +27,7 @@ function Items(itemPhoto, alt) {
 // ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']
 
 if (giveMeAllData === null) {
-    // console.log('upon page loading, there should be nothing in local storage');
+// console.log('upon page loading, there should be nothing in local storage');
 new Items ('../img/bag.jpg', 'bag');
 new Items ('../img/banana.jpg', 'banana');
 new Items ('../img/bathroom.jpg', 'bathroom');
@@ -160,6 +160,9 @@ var myChart = new Chart(ctx, {
             label: '# of Votes',
             data: clickTotal,
             backgroundColor: [
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
                 'rgba(167, 106, 8, 0.2)',
                 'rgba(167, 106, 8, 0.2)',
                 'rgba(167, 106, 8, 0.2)',
