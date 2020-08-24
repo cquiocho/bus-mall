@@ -12,7 +12,7 @@ var shownTotal = [];
 //retreive array from local storage, requires key
 var giveMeAllData = localStorage.getItem('allData');
 // console.log('local storage gave me this:', giveMeAllData);
-var parcedLocalStorage = []
+var parcedLocalStorage = [];
 // console.log('this is my retreived JSON data', parcedLocalStorage);
 
 //generate object constructor
@@ -27,7 +27,7 @@ function Items(itemPhoto, alt) {
 // ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']
 
 if (giveMeAllData === null) {
-    // console.log('upon page loading, there should be nothing in local storage');
+// console.log('upon page loading, there should be nothing in local storage');
 new Items ('../img/bag.jpg', 'bag');
 new Items ('../img/banana.jpg', 'banana');
 new Items ('../img/bathroom.jpg', 'bathroom');
@@ -86,7 +86,7 @@ function buildElements(chosenRandomImage) {
     itemImage.setAttribute('alt', chosenRandomImage.alt);
     itemImage.setAttribute('title', chosenRandomImage.title);
 
-    var radioButton = document.createElement ('input')
+    var radioButton = document.createElement ('input');
     radioButton.setAttribute('type', 'radio');
     radioButton.setAttribute('value', chosenRandomImage.alt);
 //append to parent
@@ -160,6 +160,9 @@ var myChart = new Chart(ctx, {
             label: '# of Votes',
             data: clickTotal,
             backgroundColor: [
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
+                'rgba(167, 106, 8, 0.2)',
                 'rgba(167, 106, 8, 0.2)',
                 'rgba(167, 106, 8, 0.2)',
                 'rgba(167, 106, 8, 0.2)',

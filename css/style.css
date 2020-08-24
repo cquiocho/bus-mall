@@ -1,6 +1,5 @@
 body {
     background-color: rgb(61, 44, 44);
-    margin: 20px;
 }
 
 h1 {
@@ -8,10 +7,18 @@ h1 {
     font-size: 5em;
     text-align: center;
     color: rgb(61, 44, 44);
+    margin-top: 30px;
 }
 
 img {
     width: 20%;
+    margin-left: 100px;
+}
+
+#images {
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
 #inventory {
@@ -21,8 +28,10 @@ img {
     margin-top: 30px;
 }
 
-#item-list{
+#item-list {
     color: rgb(167, 106, 8);
+    text-align: center;
+    margin-top: 30px;
 }
 
 #footback {
@@ -30,6 +39,7 @@ img {
     height: 50px;
     background-color:  rgb(167, 106, 8);
     margin-top: 30px;
+    margin-bottom: 30px;
     text-align: center;
     font-size: 2em;
     padding-top: 10px;
